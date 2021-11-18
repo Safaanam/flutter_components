@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/nav_bar/animated_nav.dart';
+import 'package:flutter_components/nav_bar/bottom_nav.dart';
+import 'package:flutter_components/tab_bar/tab_bar.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Cards',
-      home: MyHomePage(title: 'Flutter CardView'),
+      title: 'Flutter NavBar and Tabbar',
+      home: MyHomePage(title: 'Flutter'),
     );
   }
 }
@@ -36,8 +40,26 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: const Center(
-          child: Text("Hello World")
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (_) => const BottomNav()));
+              },
+                  child: const Text("Click for NavBar")),
+              ElevatedButton(onPressed: () {Navigator.push(context, MaterialPageRoute(
+                  builder: (_) => const AnimatedNavBar()));
+              },
+                  child: const Text("Click For Animated NavBar")),
+              ElevatedButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (_) => const TabBarPage()));
+              },
+                  child: const Text("Click For TabBar")),
+            ],
+          ),
         ),
       ),
     );
