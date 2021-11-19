@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/rating/app_rating.dart';
+import 'package:flutter_components/rating/rating.dart';
+import 'package:flutter_components/review/review.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Cards',
-      home: MyHomePage(title: 'Flutter CardView'),
+      title: 'Flutter Reviews',
+      home: MyHomePage(title: 'Rating and Reviews'),
     );
   }
 }
@@ -36,8 +39,26 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: const Center(
-          child: Text("Hello World")
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (_) => const Rating()));
+              },
+                  child: const Text("Click for Rating")),
+              ElevatedButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (_) => const AppRating()));
+              },
+                  child: const Text("Click for App Rating")),
+              ElevatedButton(onPressed: () {Navigator.push(context, MaterialPageRoute(
+                  builder: (_) => const Review()));
+              },
+                  child: const Text("Click for Review")),
+            ],
+          ),
         ),
       ),
     );
