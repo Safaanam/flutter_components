@@ -8,18 +8,34 @@ class Review extends StatefulWidget {
 }
 
 class _ReviewState extends State<Review> {
+  String comment = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ratings"),
+        title: const Text("Review"),
       ),
       body: Center(
-          child: Container(
-            height: 200,
-            width: 350,
-            color: Colors.deepPurpleAccent[100],
-          )
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10,right: 10),
+                child: TextFormField(
+                  maxLines: 3,
+                  maxLength: 100,
+                  onChanged: (comment) => setState(() => this.comment = comment),
+                  decoration: InputDecoration(
+                    hintText: 'Write Comment...',
+                    border: const OutlineInputBorder(),
+                    counterText: '${comment.length.toString()}/100 character(s)'
+                  ),
+                  ),
+                ),
+              ElevatedButton(onPressed: () {print("comment: $comment");},
+                  child: const Text("Submit"))
+            ],
+          ),
       ),
     );
   }
