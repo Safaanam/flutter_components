@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/view/tags_grid.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,8 +37,12 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: const Center(
-          child: Text("Hello World")
+        body: Center(
+            child: ElevatedButton(onPressed: () { Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const TagGrid()));
+            },
+                child: const Text("Tags")
+            )
         ),
       ),
     );
