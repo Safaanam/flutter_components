@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/face/ui/face_recognition.dart';
+import 'package:flutter_components/fingerprint/ui/fingerprint.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Cards',
-      home: MyHomePage(title: 'Flutter CardView'),
+      title: 'Flutter Auth',
+      home: MyHomePage(title: 'Flutter Auth'),
     );
   }
 }
@@ -36,8 +38,18 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: const Center(
-          child: Text("Hello World")
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: () {Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const FingerprintPage()));},
+                  child: const Text("Fingerprint Authentication")),
+              ElevatedButton(onPressed: () {Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const FacePage()));},
+                  child: const Text("Face Recognition")),
+            ],
+          ),
         ),
       ),
     );
