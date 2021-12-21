@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/currency_conversion.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Cards',
-      home: MyHomePage(title: 'Flutter CardView'),
+      title: 'Currency Conversion',
+      home: MyHomePage(title: 'Currency Conversion'),
     );
   }
 }
@@ -27,7 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
 
@@ -36,8 +36,22 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: const Center(
-          child: Text("Hello World")
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: () {Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const CurrencyConversion()));},
+                  child: const Text("Currency Conversion"),
+              ),
+              ElevatedButton(onPressed: () { },
+              /*Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const AllCurrenciesDisplayed()));
+              }, */
+                child: const Text("Currency API"),
+              )
+            ],
+          )
         ),
       ),
     );
