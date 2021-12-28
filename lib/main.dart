@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_components/currency_conversion.dart';
+import 'package:flutter_components/api/screens/home.dart';
+import 'package:flutter_components/package/currency_conversion.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,10 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(builder: (_) => const CurrencyConversion()));},
                   child: const Text("Currency Conversion"),
               ),
-              ElevatedButton(onPressed: () { },
-              /*Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => const AllCurrenciesDisplayed()));
-              }, */
+              ElevatedButton(onPressed: () {Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const HomePage())); },
                 child: const Text("Currency API"),
               )
             ],
