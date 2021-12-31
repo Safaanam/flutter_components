@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_components/api/components/anyToAny.dart';
 import 'package:flutter_components/api/components/usdToAny.dart';
 import 'package:flutter_components/api/functions/fetch_rates.dart';
-import 'package:flutter_components/api/models/pair_conversions.dart';
 import 'package:flutter_components/api/models/rates_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,7 +15,6 @@ class _HomePageState extends State<HomePage> {
 
   //Initial Variables
   late Future<RatesModel> result;
-  late Future<PairConv> converted;
   final formkey = GlobalKey<FormState>();
 
 
@@ -26,7 +24,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     setState(() {
       result = fetchrates();
-      converted = fetchcurrencies();
     });
   }
 
@@ -53,28 +50,16 @@ class _HomePageState extends State<HomePage> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 }
-                return Center(
-                  child: FutureBuilder<PairConv>(
-                      future: converted,
-                      builder: (context, currSnapshot) {
-                        if (currSnapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(child: CircularProgressIndicator());
-                        }
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            UsdToAny(
-                              currencies: currSnapshot.data!.conversionRate  ,
-                              rates: snapshot.data!.conversionRates,
-                            ),
-                            AnyToAny(
-                              currencies: currSnapshot.data!.conversionRate,
-                              rates: snapshot.data!.conversionRates,
-                            ),
-                          ],
-                        );
-                      }),
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    UsdToAny(
+                      rates: snapshot.data!.conversionRates,
+                    ),
+                    AnyToAny(
+                      rates: snapshot.data!.conversionRates,
+                    ),
+                  ],
                 );
               },
             ),

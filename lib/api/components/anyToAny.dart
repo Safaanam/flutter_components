@@ -3,8 +3,7 @@ import 'package:flutter_components/api/functions/fetch_rates.dart';
 
 class AnyToAny extends StatefulWidget {
   final Map rates;
-  final double currencies;
-  const AnyToAny({Key? key, required this.rates, required this.currencies})
+  const AnyToAny({Key? key, required this.rates})
       : super(key: key);
 
   @override
@@ -20,11 +19,9 @@ class _AnyToAnyState extends State<AnyToAny> {
 
   @override
   Widget build(BuildContext context) {
-    var w = MediaQuery.of(context).size.width;
     return Card(
       color: Colors.blueGrey[50],
       child: Container(
-        // width: w / 3,
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +126,7 @@ class _AnyToAnyState extends State<AnyToAny> {
               width: 10,
             ),
             const SizedBox(height: 10),
-            Container(child: Text(answer))
+            Text(answer)
           ],
         ),
       ),

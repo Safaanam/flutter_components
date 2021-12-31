@@ -3,8 +3,7 @@ import 'package:flutter_components/api/functions/fetch_rates.dart';
 
 class UsdToAny extends StatefulWidget {
   final Map rates;
-  final double currencies;
-  const UsdToAny({Key? key, required this.rates, required this.currencies})
+  const UsdToAny({Key? key, required this.rates})
       : super(key: key);
 
   @override
@@ -18,11 +17,9 @@ class _UsdToAnyState extends State<UsdToAny> {
 
   @override
   Widget build(BuildContext context) {
-    var w = MediaQuery.of(context).size.width;
     return Card(
       color: Colors.blueGrey[50],
       child: Container(
-        // width: w / 3,
           padding: const EdgeInsets.all(20),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -100,7 +97,7 @@ class _UsdToAnyState extends State<UsdToAny> {
 
                 //Final Output
                 const SizedBox(height: 10),
-                Container(child: Text(answer))
+                Text(answer)
               ])),
     );
   }
