@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/user_survey_kit/survey.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Cards',
-      home: MyHomePage(title: 'Flutter CardView'),
+      title: 'Flutter User Survey',
+      home: MyHomePage(title: 'Flutter User Survey'),
     );
   }
 }
@@ -36,9 +37,18 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: const Center(
-          child: Text("Hello World")
-        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: () {Navigator.push(context, MaterialPageRoute(
+                  builder: (_) => const SurveyModel
+                    ()));},
+                  child: const Text('Click for User Survey')
+              ),
+            ],
+          ),
+        )
       ),
     );
   }
