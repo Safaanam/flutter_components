@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_components/inbuilt/image_scaling.dart';
+import 'package:flutter_components/scaling_package/scaling.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
               },
                   child: const Text("Inbuilt scaling option")
               ),
-              ElevatedButton(onPressed: () {},
+              ElevatedButton(onPressed: () { Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const ScalingMethods()));},
                   child: const Text("scaling from package option")
               ),
             ],
