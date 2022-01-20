@@ -1,45 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_components/widget/button_widget.dart';
+import 'package:flutter_components/widget/drawer_widget.dart';
 
-void main() {
-  runApp(const MyApp());
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  static const String title = 'Navigation Drawer';
+
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Cards',
-      home: MyHomePage(title: 'Flutter CardView'),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: title,
+    theme: ThemeData(primarySwatch: Colors.blue),
+    home: MainPage(),
+  );
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-
-  final String title;
-
+class MainPage extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-
+class _MainPageState extends State<MainPage> {
   @override
-  Widget build(BuildContext context) {
-
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: const Center(
-          child: Text("Hello World")
+  Widget build(BuildContext context) => Scaffold(
+    drawer: NavigationDrawerWidget(),
+    // endDrawer: NavigationDrawerWidget(),
+    appBar: AppBar(
+      title: const Text(MyApp.title),
+    ),
+    body: Builder(
+      builder: (context) => Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: ButtonWidget(
+          icon: Icons.open_in_new,
+          text: 'Open Drawer',
+          onClicked: () {
+            Scaffold.of(context).openDrawer();
+            // Scaffold.of(context).openEndDrawer();
+          },
         ),
       ),
-    );
-  }
+    ),
+  );
 }
