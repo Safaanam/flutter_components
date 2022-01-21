@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/page/left_slide_example.dart';
+import 'package:flutter_components/page/right_slide_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Cards',
-      home: MyHomePage(title: 'Flutter CardView'),
+      title: 'Flutter Slideable Action Button',
+      home: MyHomePage(title: 'Flutter Slideable Action Button'),
     );
   }
 }
@@ -36,8 +38,22 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: const Center(
-          child: Text("Hello World")
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (_) => const LeftSliding()));
+              },
+                  child: const Text("Click for left sliding example")),
+              ElevatedButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (_) => const RightSliding()));
+              },
+                  child: const Text("Click for right sliding example")),
+            ],
+          ),
         ),
       ),
     );
