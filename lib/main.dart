@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/custom/custom_dialog.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Cards',
-      home: MyHomePage(title: 'Flutter CardView'),
+      title: 'Flutter Custom Alert Dialogue',
+      home: MyHomePage(title: 'Flutter Custom Alert Dialogue'),
     );
   }
 }
@@ -36,8 +37,27 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: const Center(
-          child: Text("Hello World")
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  child: const Text("Custom Alert Dialogue"),
+                onPressed: (){
+                  showDialog(context: context,
+                      builder: (BuildContext context){
+                        return CustomDialogBox(
+                          title: "Custom Dialog Demo",
+                          descriptions: "This is a custom dialog in flutter ",
+                          text: "okay",
+                          img: Image.asset("assets/images/sample.png"),
+                        );
+                      }
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
